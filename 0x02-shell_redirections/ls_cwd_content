@@ -1,0 +1,16 @@
+The content of the directory is: total 48
+drwxr-xr-x 2 root root 272 Jul 10 05:13 .
+drwxr-xr-x 6 root root 121 Jul 10 01:26 ..
+-rwxr-xr-x 1 root root  32 Jul 10 02:10 0-hello_world
+-rwxr-xr-x 1 root root  28 Jul 10 01:53 1-confused_smiley
+-rwxr-xr-x 1 root root  28 Jul 10 02:04 2-hellofile
+-rwxr-xr-x 1 root root  49 Jul 10 02:29 3-twofiles
+-rwxr-xr-x 1 root root  35 Jul 10 02:35 4-lastlines
+-rwxr-xr-x 1 root root  35 Jul 10 02:42 5-firstlines
+-rwxr-xr-x 1 root root  40 Jul 10 02:55 6-third_line
+-rwxr-xr-x 1 root root  78 Jul 10 04:37 7-file
+-rwxr-xr-x 1 root root  77 Jul 10 05:13 8-cwd_state
+-rw-r--r-- 1 root root  12 Jul 10 04:51 \*\\'"Best School"\'\\*$\?\*\*\*\*\*:)
+-rw-r--r-- 1 root root   0 Jul 10 02:03 Display
+-rw-r--r-- 1 root root 300 Jul 10 02:48 iacta
+-rw-r--r-- 1 root root  36 Jul 10 01:30 README.md
