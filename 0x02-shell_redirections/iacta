@@ -1,0 +1,14 @@
+$ echo "I am $LOGNAME"
+I am lhunath
+$ echo 'I am $LOGNAME'
+I am $LOGNAME
+$ # boo
+$ echo An open\ \ \ space
+An open   space
+$ echo "My computer is $(hostname)"
+My computer is Lyndir
+$ echo boo > file
+$ echo $(( 5 + 5 ))
+10
+$ (( 5 > 0 )) && echo "Five is greater than zero."
+Five is greater than zero.
