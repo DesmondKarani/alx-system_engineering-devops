@@ -1,9 +1,19 @@
-!/bin/bash
-# lines that start like this are shell comments
-# read projects current directory with $PWD
-echo “running command from” $PWD
-cd $PWD
+#!/bin/bash
+
+# Display the current directory
+echo "Running command from: $PWD"
+
+# Change to the current directory
+cd "$PWD"
+
+# Add all changes to the staging area
 git add .
-echo “Enter commit message: “
-git commit -am “$commitMessage”
+
+# Prompt the user for the commit message
+read -p "Enter commit message: " commitMessage
+
+# Commit with the provided message
+git commit -m "$commitMessage"
+
+# Push the changes to the remote repository
 git push
