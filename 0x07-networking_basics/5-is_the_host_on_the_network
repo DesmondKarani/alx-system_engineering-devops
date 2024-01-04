@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Script to check if a host is on the network by pinging the provided IP address
+
+# Function to display usage
+display_usage() {
+    echo "Usage: $0 {IP_ADDRESS}"
+}
+
+# Check if an argument is provided
+if [ $# -eq 0 ]; then
+    display_usage
+    exit 1
+fi
+
+# Ping the provided IP address 5 times
+ping -c 5 $1
