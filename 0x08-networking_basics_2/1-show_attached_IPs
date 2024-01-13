@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 # This script displays all active IPv4 IPs on the machine it's executed on
-# Usage: ./1-show_attached_IPs
 
 # Loop through all network interfaces
 for interface in $(ifconfig | cut -d ' ' -f1| tr '\n' ' ')
 do
-  # Get the IP address of the interface
-  ip=$(ifconfig $interface | grep -w inet | awk '{ print $2 }')
-  # If the IP is not empty, print it
-  if [ -n "$ip" ]
-  then
-    echo "$ip"
-  fi
+	ip=$(ifconfig $interface | grep -w inet | awk '{ print $2 }')
+
+	if [ -n "$ip" ]
+
+	then
+		echo "$ip"
+	fi
 done
