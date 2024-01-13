@@ -4,7 +4,7 @@
 # Loop through all network interfaces
 for interface in $(ifconfig | cut -d ' ' -f1| tr '\n' ' ')
 do
-	ip=$(ifconfig $interface | grep -w inet | awk '{ print $2 }')
+	ip=$(ifconfig "$interface" | grep -w inet | awk '{ print $2 }')
 
 	if [ -n "$ip" ]
 

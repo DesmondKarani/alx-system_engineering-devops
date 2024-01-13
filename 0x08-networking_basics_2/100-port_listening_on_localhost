@@ -7,6 +7,6 @@ exec 3<>/dev/tcp/localhost/98
 # Loop forever
 while true
 do
-	read -u 3 data
-	echo "$data"
+        read -r -u 3 data  # added the -r option here
+        echo "$data"
 done
