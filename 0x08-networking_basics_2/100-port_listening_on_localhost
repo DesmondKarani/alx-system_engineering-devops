@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # This script listens on port 98 on localhost and prints any incoming data
 
-# Create a socket using file descriptor 3
+# Open a file descriptor (3) for listening on port 98
 exec 3<>/dev/tcp/localhost/98
 
-# Loop forever
-while true
-do
-        read -r -u 3 data  # added the -r option here
-        echo "$data"
+echo "Listening on port 98. You can connect using 'telnet localhost 98' from another terminal."
+
+# Loop to read messages from the connection
+while read -r line <&3; do
+    echo "$line"
 done
