@@ -1,8 +1,14 @@
-#!/usr/bin/env bash
-# This script sets up a listening service on localhost port 98
+#!/bin/bash
+# This script listens on port 98 on localhost and prints any incoming data
+# Usage: sudo ./100-port_listening_on_localhost
 
-PORT=98
+# Create a socket using file descriptor 3
+exec 3<>/dev/tcp/localhost/98
 
-# Set up a simple TCP server that listens on port 98 and prints received messages
-# Uses netcat (nc), listening on localhost and specified port
-nc -lk localhost $PORT
+# Loop forever
+while true
+do
+  # Read data from the socket and print it
+  read -u 3 data
+  echo "$data"
+done
