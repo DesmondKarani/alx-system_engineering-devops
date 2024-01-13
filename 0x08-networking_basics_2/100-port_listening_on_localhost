@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script listens on port 98 on localhost and prints any incoming data
 # Usage: sudo ./100-port_listening_on_localhost
 
