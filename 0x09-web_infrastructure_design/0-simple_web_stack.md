@@ -1,4 +1,4 @@
-https://github.com/DesmondKarani/alx-system_engineering-devops/blob/main/0x09-web_infrastructure_design/0-simple_web_stack.png?raw=true
+![Simple Web Stack](0-simple_web_stack.png)
 
 # Description
 This setup is a basic web infrastructure hosting a site accessible at www.foobar.com. The server lacks firewalls and SSL certificates for network protection. All components, including the database and application server, share the server's CPU, RAM, and SSD resources.
