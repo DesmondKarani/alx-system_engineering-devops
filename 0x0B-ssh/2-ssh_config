@@ -1,0 +1,7 @@
+# SSH Config File
+# Configuration for the main web server
+Host web-01
+	Hostname 192.168.1.100
+	User admin
+	PasswordAuthentication no
+	IdentityFile ~/.ssh/school
