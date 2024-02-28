@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Script to install and configure Nginx on an Ubuntu machine
+
+# Update the package list to ensure access to the latest versions
+apt-get update -y
+
+# Install Nginx without any interactive dialogue
+apt-get install nginx -y
+
+# Disable strict host key checking for non-interactive connections
+echo "server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    root /var/www/html;
+    index index.html;
+    server_name _;
+    location / {
+        return 200 'Hello World!';
+    }
+}" > /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the changes
+nginx -s reload || nginx
+
+# Ensure Nginx starts on boot
+update-rc.d nginx defaults
