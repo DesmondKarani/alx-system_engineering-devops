@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Configures Nginx to redirect /redirect_me to another page with a 301 status code
+
+# Ensure Nginx is installed
+apt-get update -y
+apt-get install nginx -y
+
+# Configure Nginx to perform the redirection
+sed -i '/server_name _;/a \\trewrite ^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# Reload Nginx to apply the changes
+nginx -s reload || service nginx reload
