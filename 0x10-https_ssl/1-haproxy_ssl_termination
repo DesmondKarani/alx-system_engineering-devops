@@ -1,0 +1,24 @@
+global
+    # Global settings (omitted for brevity)
+    ssl-dh-param-file /etc/ssl/certs/dhparam.pem
+
+defaults
+    # Default settings (omitted for brevity)
+
+# Define HTTP frontend
+frontend http_front
+    bind *:80
+    # Redirect HTTP to HTTPS (remove if not desired)
+    redirect scheme https if !{ ssl_fc }
+    stats uri /haproxy?stats
+
+# Define HTTPS frontend
+frontend https_front
+    bind *:443 ssl crt /etc/letsencrypt/live/www.karanicodes.tech/haproxy.pem
+    default_backend http_back
+
+# Define backend
+backend http_back
+    balance roundrobin
+    server web-01 100.25.158.138:80 check
+    server web-02 35.168.3.127:80 check
