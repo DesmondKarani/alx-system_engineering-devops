@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# This script configures Nginx to listen on port 80 of all the server's active IPv4 IPs
+
+# Install Nginx if it's not already installed
+if ! command -v nginx &> /dev/null; then
+    echo "Nginx not installed. Installing..."
+    sudo apt update
+    sudo apt install nginx -y
+else
+    echo "Nginx is already installed."
+fi
+
+# Ensure Nginx is running
+sudo systemctl start nginx
+
+# Ensure Nginx is enabled to start on boot
+sudo systemctl enable nginx
+
+# Check if Nginx is set to listen on port 80, adjust if necessary
+# Note: This step is omitted because by default, Nginx listens on port 80.
+# However, you might need to modify the default site configuration depending on your requirements.
+
+# Allow traffic on port 80 if UFW (Uncomplicated Firewall) is active
+if sudo ufw status | grep -qw active; then
+    echo "Configuring UFW to allow traffic on port 80..."
+    sudo ufw allow 'Nginx HTTP'
+fi
+
+# Restart Nginx to apply changes
+sudo systemctl restart nginx
+
+echo "Nginx configuration updated. It should now be listening on port 80."
