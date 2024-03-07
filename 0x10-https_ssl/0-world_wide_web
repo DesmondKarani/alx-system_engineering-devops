@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Script to display DNS information about subdomains
+
+# Function to display DNS info
+display_dns_info() {
+    local subdomain=$1
+    local domain=$2
+    local info
+    # Fetch DNS record information
+    info=$(dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:' | tail -n1)
+    
+    # Extract record type and destination from the info
+    local record_type destination
+    record_type=$(echo "$info" | awk '{print $4}')
+    destination=$(echo "$info" | awk '{print $5}')
+    
+    # Display formatted DNS record information
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+}
+
+# Main script logic
+
+# Validate number of arguments
+if [ $# -lt 1 ] || [ $# -gt 2 ]; then
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
+
+domain=$1
+
+# Check if subdomain is provided
+if [ $# -eq 2 ]; then
+    subdomain=$2
+    display_dns_info "$subdomain" "$domain"
+else
+    # Default subdomains to query
+    for sub in www lb-01 web-01 web-02; do
+        display_dns_info "$sub" "$domain"
+    done
+fi
