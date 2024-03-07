@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+sudo apt-get install nginx -y
+sudo systemctl restart nginx
+sudo ufw allow 'Nginx HTTP'
