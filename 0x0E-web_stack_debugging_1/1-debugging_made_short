@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # configuring Nginx
-ln sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-# Restart
-service nginx start
-kill "$(pgrep 'nginx' head -1)"
+service nginx stop > /dev/null 2>&1
+echo -e "server {\nlisten 80;\n}" > /etc/nginx/sites-available/default
+service nginx start > /dev/null 2>&1
