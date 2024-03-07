@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-sudo apt-get install nginx -y
-sudo systemctl restart nginx
-sudo ufw allow 'Nginx HTTP'
+# configuring Nginx
+ln sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+# Restart
+service nginx start
+kill "$(pgrep 'nginx' head -1)"
