@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # configuring Nginx
-service nginx stop > /dev/null 2>&1
-echo -e "server {\nlisten 80;\n}" > /etc/nginx/sites-available/default
-service nginx start > /dev/null 2>&1
+sudo apt-get install nginx -y
+sudo systemctl restart nginx
+sudo ufw allow 'Nginx HTTP'
