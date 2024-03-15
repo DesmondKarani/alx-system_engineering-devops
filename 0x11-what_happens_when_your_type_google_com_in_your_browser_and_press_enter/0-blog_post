@@ -1,0 +1,44 @@
+# What Happens When You Type "https://www.google.com" and Press Enter 🤔
+
+***Ever wondered what goes on behind the scenes when you type a website address into your browser and hit Enter? A whirlwind of processes takes place within seconds, allowing that website to appear on your screen. Let's break down the fascinating journey of how typing "https://www.google.com" connects you to Google's search engine.***
+
+## Step 1. DNS: Translating Words to Numbers
+* Browser Check: Before sending your request out into the world, your browser quickly checks if it already knows the address of "www.google.com" within its own memory (the browser cache). If it finds it, bingo! You'll skip a few steps. 
+
+* DNS Lookup: If not found in the cache, the quest for Google begins! Computers don't understand domain names like "www.google.com." They love numbers – IP addresses. Think of the Domain Name System (DNS) as a giant internet phonebook. Your browser asks your operating system to find the IP address associated with "www.google.com." A series of DNS servers are likely queried:
+    * Recursive DNS Resolver: Usually provided by your Internet Service Provider (ISP), this is the first stop. It might not know the answer but will help find another DNS server that does.
+    * Root and TLD Nameservers: More specialized DNS servers are consulted, leading us to authoritative nameservers that hold the IP address for "www.google.com."
+
+* IP Address Found! Finally, your browser gets back the IP address that's the numerical equivalent of "www.google.com."
+
+## Step 2. TCP/IP: Making the Connection
+
+* TCP Handshake Your browser initiates a conversation with the server with the newly found IP address. This involves the TCP (Transmission Control Protocol) part of the TCP/IP suite. It's like a polite greeting of "Hi, I'd like to talk please!" This three-way handshake ensures reliable data transfer.
+
+## Step 3. Firewall: Security Check
+
+* The Gatekeeper: Firewalls, either hardware or software, monitor incoming and outgoing traffic. They have rules to allow or deny traffic based on security policies. Your request passes the firewall check if it meets the security requirements.
+
+## Step 4. HTTPS/SSL: Making it Secure
+
+* Encryption: The "https" tells your browser to use HTTPS (Hypertext Transfer Protocol Secure). This involves SSL/TLS (Secure Sockets Layer/Transport Layer Security) certificates. Browsers and the server establish an encrypted exchange so your search remains private.
+
+## Step 5. Load Balancer: Handling the Crowd
+
+* Traffic Cop: Websites like Google have massive traffic! Load balancers distribute requests across multiple servers. They prevent any single server from being overwhelmed, ensuring a smooth experience.
+
+## Step 6. Web Server: Welcome to the Front Door
+
+* Software Server: The load balancer assigns your request to a web server (like Apache or Nginx). This software now handles your HTTP request. Think of it as a restaurant host taking your order.
+
+## Step 7. Application Server: Processing the Request
+
+* Behind the Scenes: Web servers are good at handling static content. Sites like Google rely on application servers running custom code (e.g., in Python, Java) to process search queries and generate dynamic pages.
+
+## Step 8. Database: It's All About Data
+
+* Where the Info Lives: Google stores incredible amounts of information. Databases are called in to store things like search history, user preferences, etc. Your search query may interact with the database depending on what you're searching for.
+
+### *... And Finally, Google Appears (Whew!🙂)*
+
+The application server prepares the HTML, CSS, and JavaScript representing Google's search page. This is sent back through all the layers, your browser interprets it, and voila! Google appears on your screen, ready to serve your search.
