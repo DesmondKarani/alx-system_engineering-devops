@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# This script configures Nginx to run as the nginx user and listen on port 8080
+
+# Ensure the script is run as root
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+# Check if nginx user exists, if not, create it
+if ! id "nginx" &>/dev/null; then
+    useradd -r -s /bin/false nginx
+fi
+
+# Update nginx.conf to run as nginx user
+sed -i 's/user www-data;/user nginx;/g' /etc/nginx/nginx.conf
+
+# Update server block to listen on port 8080
+find /etc/nginx/sites-enabled/ -type f -exec sed -i 's/listen 80;/listen 8080;/g' {} \;
+
+# Restart Nginx to apply changes
+systemctl restart nginx
+
+# Check if Nginx is running as nginx user and listening on port 8080
+echo "Checking if Nginx is running as 'nginx' user and on port 8080:"
+pgrep -a nginx
+netstat -tuln | grep 8080
