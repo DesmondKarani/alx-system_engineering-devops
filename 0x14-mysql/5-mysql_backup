@@ -13,7 +13,7 @@ MYSQL_ROOT_PASSWORD=$1
 
 # Define the filename based on the current date
 DATE=$(date +%d-%m-%Y)
-FILENAME="backup-$DATE.sql"
+FILENAME="backup.sql"
 ARCHIVE_NAME="$DATE.tar.gz"
 
 # Dump all databases
@@ -23,7 +23,7 @@ mysqldump --user=root --password="$MYSQL_ROOT_PASSWORD" --all-databases > "$FILE
 tar -czvf "$ARCHIVE_NAME" "$FILENAME"
 
 # Remove the original dump file to only keep the compressed archive
-rm "$FILENAME"
+# rm "$FILENAME"
 
 # Print completion message
 echo "MySQL backup created: $ARCHIVE_NAME"
