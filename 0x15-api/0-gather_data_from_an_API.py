@@ -28,8 +28,8 @@ def fetch_todo_list(employee_id):
         completed_tasks = sum(task['completed'] for task in todos)
 
         # Display the progress
-        print(f"Employee {user['name']} is done with tasks("
-              f"{completed_tasks}/{total_tasks}):")
+        print("Employee {} is done with tasks({}/{}):".format(
+            user['name'], completed_tasks, total_tasks))
 
         # Display titles of completed tasks
         for task in todos:
