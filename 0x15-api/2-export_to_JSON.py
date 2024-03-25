@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 '''Extend the previous script to export data in the JSON format.'''
 
-import requests
 import json
+import requests
 from sys import argv
 
 
