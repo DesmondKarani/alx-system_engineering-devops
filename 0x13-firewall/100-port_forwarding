@@ -1,0 +1,23 @@
+# Port Forwarding Configuration for UFW
+# This configuration redirects traffic from port 8080 to port 80 using NAT.
+
+1. Open the UFW before rules file:
+sudo nano /etc/ufw/before.rules
+
+2. Add the following NAT rule before the `*filter` section:
+
+*nat
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+COMMIT
+
+This rule instructs the firewall to redirect all incoming TCP traffic on port 8080 to port 80.
+
+3. Save and exit the editor.
+
+4. Apply the changes by disabling and then re-enabling UFW:
+sudo ufw disable
+sudo ufw enable
+
+5. Verify the UFW status to ensure it's active:
+sudo ufw status
