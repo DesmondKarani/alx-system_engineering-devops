@@ -3,26 +3,28 @@
 of subscribers for a given subreddit."""
 
 import requests
-import sys
 
 
 def number_of_subscribers(subreddit):
-    """Returns the number of subscribers for a given subreddit."""
-    url = f'https://www.reddit.com/r/{subreddit}/about.json'
-    headers = {'User-Agent': 'customUserAgent'}
-    response = requests.get(url, headers=headers)
+    """Retrieves the number of subscribers for a given subreddit.
 
-    if response.status_code == 200:
-        try:
-            return response.json()['data']['subscribers']
-        except KeyError:
-            return 0
-    else:
+    Args:
+        subreddit (str): The name of the subreddit.
+
+    Returns:
+        int: The number of subscribers, or 0 if the subreddit is invalid.
+    """
+
+    headers = {'User-Agent': 'MyCustomUserAgent/1.0'}  # Customize User-Agent
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+
+    try:
+        response = requests.get(url, headers=headers, allow_redirects=False)
+        response.raise_for_status()  # Raise exception for error status codes
+
+        data = response.json()
+        return data['data']['subscribers']  # Extract subscriber count
+
+    except requests.exceptions.RequestException as error:
+        print(f"Error occurred: {error}")
         return 0
-
-
-if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("Please pass an argument for the subreddit to search.")
-    else:
-        print("{:d}".format(number_of_subscribers(sys.argv[1])))
