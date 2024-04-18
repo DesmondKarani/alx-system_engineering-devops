@@ -11,18 +11,11 @@ server {
     # Serve the specific page
     location /airbnb-onepage/ {
         proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
+}
 
 location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
         proxy_pass http://localhost:5001;
-        include /etc/nginx/proxy_params;  # This includes proxy settings like headers
+        include /etc/nginx/proxy_params;
     }
 
     # Custom error page
@@ -30,10 +23,5 @@ location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
     location /404 {
         root /var/www/html;
         internal;
-    }
-
-    # Optionally, handle other requests
-    location / {
-        try_files $uri $uri/ =404;
     }
 }
